@@ -10,7 +10,7 @@ module.exports = function(dir, remote) {
         return;
       }
 
-      if ('remote' in config && remote in config.remote && 'url' in config.remote.origin) {
+      if ('remote' in config && remote in config.remote && 'url' in config.remote[remote]) {
         resolve(config.remote[remote].url);
       } else {
         reject(new Error(remote + ' remote doesn\'t exist.'));
