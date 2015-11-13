@@ -1,0 +1,15 @@
+{
+  "name": "git-remote-url",
+  "version": "0.0.1",
+  "description": "Get a remote URL of a git repository",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/marco-c/git-remote-url/"
+  },
+  "author": "Marco Castelluccio <mcastelluccio@mozilla.com>",
+  "license": "MPL-2.0",
+  "keywords": [
+    "git"
+  ]
+}
