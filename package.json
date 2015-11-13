@@ -14,5 +14,8 @@
   ],
   "dependencies": {
     "gitconfiglocal": "^1.0.0"
+  },
+  "devDependencies": {
+    "temp": "^0.8.3"
   }
 }
