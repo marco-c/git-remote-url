@@ -42,6 +42,21 @@ describe('git-remote-url', function() {
     ]);
   });
 
+  it('returns the correct URLs when there\'s no origin remote', function() {
+    childProcess.execSync('git init');
+    childProcess.execSync('git remote add remote1 https://github.com/marco-c/remote1.git');
+    childProcess.execSync('git remote add remote2 https://github.com/marco-c/remote2.git');
+
+    return Promise.all([
+      gitRemoteUrl('./', 'remote1').then(function(url) {
+        assert.equal(url, 'https://github.com/marco-c/remote1.git');
+      }),
+      gitRemoteUrl('./', 'remote2').then(function(url) {
+        assert.equal(url, 'https://github.com/marco-c/remote2.git');
+      }),
+    ]);
+  });
+
   it('fails when the directory isn\'t a git repository', function() {
     return gitRemoteUrl('./', 'origin').then(function(url) {
       assert(false);
