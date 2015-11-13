@@ -11,5 +11,8 @@
   "license": "MPL-2.0",
   "keywords": [
     "git"
-  ]
+  ],
+  "dependencies": {
+    "gitconfiglocal": "^1.0.0"
+  }
 }
