@@ -18,12 +18,46 @@ describe('git-remote-url', function() {
     process.chdir(oldWD);
   });
 
-  it('returns the correct URL', function() {
+  it('returns the correct URL when there\'s a single remote', function() {
     childProcess.execSync('git init');
     childProcess.execSync('git remote add origin https://github.com/marco-c/git-remote-url.git');
 
     return gitRemoteUrl('./', 'origin').then(function(url) {
       assert.equal(url, 'https://github.com/marco-c/git-remote-url.git');
+    });
+  });
+
+  it('returns the correct URLs when there are multiple remotes', function() {
+    childProcess.execSync('git init');
+    childProcess.execSync('git remote add origin https://github.com/marco-c/git-remote-url.git');
+    childProcess.execSync('git remote add upstream https://github.com/marco-c/ahahah.git');
+
+    return Promise.all([
+      gitRemoteUrl('./', 'origin').then(function(url) {
+        assert.equal(url, 'https://github.com/marco-c/git-remote-url.git');
+      }),
+      gitRemoteUrl('./', 'upstream').then(function(url) {
+        assert.equal(url, 'https://github.com/marco-c/ahahah.git');
+      }),
+    ]);
+  });
+
+  it('fails when the directory isn\'t a git repository', function() {
+    return gitRemoteUrl('./', 'origin').then(function(url) {
+      assert(false);
+    }, function() {
+      assert(true);
+    });
+  });
+
+  it('fails when the repository doesn\'t have the specified remote', function() {
+    childProcess.execSync('git init');
+    childProcess.execSync('git remote add origin https://github.com/marco-c/git-remote-url.git');
+
+    return gitRemoteUrl('./', 'upstream').then(function(url) {
+      assert(false);
+    }, function() {
+      assert(true);
     });
   });
 });
