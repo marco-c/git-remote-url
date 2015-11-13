@@ -1,6 +1,6 @@
 {
   "name": "git-remote-url",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Get a remote URL of a git repository",
   "main": "index.js",
   "scripts": {
